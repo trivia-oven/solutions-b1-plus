@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Present & Future Tenses – B1+ Interactive Lesson</title>
+<style>
+  :root {
+    --primary: #e67e22;
+    --primary-dark: #d35400;
+    --secondary: #3498db;
+    --success: #27ae60;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --bg: #fef9f3;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e8dcc8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    text-align: center;
+    color: var(--primary-dark);
+    font-size: 2.2em;
+    margin-bottom: 5px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    font-size: 1.05em;
+  }
+
+  .progress-bar-container {
+    background: var(--border);
+    border-radius: 20px;
+    height: 14px;
+    margin-bottom: 25px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+    height: 100%;
+    width: 0%;
+    border-radius: 20px;
+    transition: width 0.5s ease;
+  }
+
+  .progress-text {
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--text-light);
+    margin-bottom: 20px;
+  }
+
+  .section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 5px solid var(--primary);
+  }
+
+  .section h2 {
+    color: var(--primary-dark);
+    font-size: 1.4em;
+    margin-bottom: 8px;
+  }
+
+  .section .instruction {
+    color: var(--text-light);
+    font-size: 0.95em;
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+
+  .tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+
+  .tab-btn {
+    padding: 8px 16px;
+    border: 2px solid var(--primary);
+    border-radius: 20px;
+    background: white;
+    color: var(--primary-dark);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9em;
+  }
+
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--primary);
+    color: white;
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .dialogue-box {
+    background: #fef5e7;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 16px;
+    border: 1px solid #fdebd0;
+  }
+
+  .dialogue-box .speaker {
+    font-weight: 700;
+    color: var(--primary-dark);
+  }
+
+  .dialogue-box .highlight {
+    background: #fdebd0;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: help;
+    position: relative;
+  }
+
+  .dialogue-box .highlight:hover::after {
+    content: attr(data-use);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-dark);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  .question-block {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .question-block:last-child {
+    border-bottom: none;
+  }
+
+  .question-block p {
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .q-number {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 26px;
+    font-size: 0.85em;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  .options label {
+    display: block;
+    padding: 8px 14px;
+    margin: 5px 0;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95em;
+  }
+
+  .options label:hover {
+    border-color: var(--primary);
+    background: #fef5e7;
+  }
+
+  .options input[type="radio"] {
+    margin-right: 8px;
+    accent-color: var(--primary);
+  }
+
+  .options label.correct {
+    border-color: var(--success);
+    background: #eafaf1;
+  }
+
+  .options label.incorrect {
+    border-color: var(--danger);
+    background: #fdedec;
+  }
+
+  .options label.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .fill-input {
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.95em;
+    width: 220px;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .fill-input:focus {
+    border-color: var(--primary);
+  }
+
+  .fill-input.correct {
+    border-color: var(--success);
+    background: #eafaf1;
+  }
+
+  .fill-input.incorrect {
+    border-color: var(--danger);
+    background: #fdedec;
+  }
+
+  .explanation {
+    margin-top: 8px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    display: none;
+    line-height: 1.6;
+  }
+
+  .explanation.show { display: block; }
+
+  .explanation.correct-exp {
+    background: #eafaf1;
+    border-left: 4px solid var(--success);
+    color: #1e8449;
+  }
+
+  .explanation.incorrect-exp {
+    background: #fdedec;
+    border-left: 4px solid var(--danger);
+    color: #922b21;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+  }
+
+  .btn-check {
+    background: var(--primary);
+    color: white;
+  }
+
+  .btn-check:hover { background: var(--primary-dark); }
+
+  .btn-reset {
+    background: var(--warning);
+    color: white;
+    margin-left: 8px;
+  }
+
+  .btn-reset:hover { opacity: 0.85; }
+
+  .score-display {
+    margin-top: 12px;
+    font-weight: 700;
+    font-size: 1.05em;
+    color: var(--primary-dark);
+  }
+
+  .grammar-box {
+    background: #fef5e7;
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+  }
+
+  .grammar-box h3 {
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+    font-size: 1.1em;
+  }
+
+  .grammar-box ul {
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  .grammar-box li {
+    margin-bottom: 6px;
+  }
+
+  .grammar-box .example {
+    color: var(--secondary);
+    font-style: italic;
+    margin-left: 10px;
+  }
+
+  .matching-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .matching-item {
+    padding: 10px 14px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    font-size: 0.95em;
+  }
+
+  .matching-item:hover { border-color: var(--primary); }
+
+  .matching-item.selected {
+    border-color: var(--primary);
+    background: #fef5e7;
+    font-weight: 600;
+  }
+
+  .matching-item.matched {
+    border-color: var(--success);
+    background: #eafaf1;
+    pointer-events: none;
+  }
+
+  .ccq-box {
+    background: #eaf2f8;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    border-left: 4px solid var(--secondary);
+  }
+
+  .ccq-box .question {
+    font-weight: 600;
+    color: var(--secondary);
+    margin-bottom: 8px;
+  }
+
+  .ccq-box .options label {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 6px 12px;
+  }
+
+  .qa-block {
+    background: #fef5e7;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+  }
+
+  .qa-block .question-text {
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+  }
+
+  .qa-block textarea {
+    width: 100%;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 0.95em;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 60px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .qa-block textarea:focus { border-color: var(--primary); }
+
+  .qa-block .sample-answer {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: #eafaf1;
+    border-radius: 8px;
+    font-size: 0.9em;
+    color: #1e8449;
+    display: none;
+  }
+
+  .qa-block .sample-answer.show { display: block; }
+
+  .error-sentence {
+    padding: 10px 14px;
+    background: #fff8e1;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-size: 0.95em;
+  }
+
+  .habit-list {
+    background: #fef5e7;
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+  }
+
+  .habit-list ul {
+    margin-left: 20px;
+  }
+
+  .habit-list li {
+    margin-bottom: 6px;
+  }
+
+  .final-score {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border-radius: 16px;
+    margin-top: 20px;
+    display: none;
+  }
+
+  .final-score.show { display: block; }
+
+  .final-score h2 { font-size: 1.8em; margin-bottom: 10px; }
+
+  .final-score .emoji { font-size: 3em; margin-bottom: 10px; }
+
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .section { padding: 18px 16px; }
+    .matching-container { grid-template-columns: 1fr; }
+    .fill-input { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<h1>📚 Present & Future Tenses</h1>
+<p class="subtitle">B1+ Level — Interactive Lesson with Self-Check</p>
+
+<div class="progress-bar-container">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+<p class="progress-text" id="progressText">Progress: 0 / 7 exercises completed</p>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('intro')">💬 Intro</button>
+  <button class="tab-btn" onclick="showTab('discovery')">🔍 Discovery</button>
+  <button class="tab-btn" onclick="showTab('rules')">📖 Rules</button>
+  <button class="tab-btn" onclick="showTab('ex1')">✏️ Ex 1: Choose</button>
+  <button class="tab-btn" onclick="showTab('ex2')">📝 Ex 2: Fill in</button>
+  <button class="tab-btn" onclick="showTab('ex3')">🎯 Ex 3: Will/Going to</button>
+  <button class="tab-btn" onclick="showTab('ex4')">💬 Ex 4: Speaking</button>
+  <button class="tab-btn" onclick="showTab('ex5')">🔍 Ex 5: Errors</button>
+  <button class="tab-btn" onclick="showTab('ex6')">✍️ Ex 6: Transform</button>
+  <button class="tab-btn" onclick="showTab('ex7')">🎤 Ex 7: Freer</button>
+</div>
+
+<!-- ==================== INTRO ==================== -->
+<div class="tab-content active" id="tab-intro">
+  <div class="section">
+    <h2>💬 Speaking: Annoying Habits</h2>
+    <p class="instruction">Think about these annoying habits. Which ones annoy you the most? Which do you do yourself?</p>
+
+    <div class="habit-list">
+      <p><strong>Someone who...</strong></p>
+      <ul>
+        <li>checks their mobile phone all the time</li>
+        <li>always arrives late when meeting friends</li>
+        <li>interrupts people all the time</li>
+        <li>borrows things, but never returns them</li>
+        <li>always talks about himself/herself</li>
+      </ul>
+    </div>
+
+    <div class="qa-block">
+      <p class="question-text">Which of these habits annoy you the most? Why?</p>
+      <textarea placeholder="Write your thoughts..."></textarea>
+    </div>
+
+    <div class="qa-block">
+      <p class="question-text">Do you have any of these habits? Be honest! 😊</p>
+      <textarea placeholder="I sometimes..."></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DISCOVERY ==================== -->
+<div class="tab-content" id="tab-discovery">
+  <div class="section">
+    <h2>🔍 Guided Discovery: Read the Dialogue</h2>
+    <p class="instruction">Read the conversation between Jessica and Andy. Hover over the highlighted sentences to see what grammar they demonstrate. Then answer the questions below.</p>
+
+    <div class="dialogue-box">
+      <p><span class="speaker">Jessica:</span> Hi, Andy. You don't seem too happy!</p>
+      <br>
+      <p><span class="speaker">Andy:</span> Oh, it's Tom. I know he's a friend, but he can be really annoying sometimes!</p>
+      <br>
+      <p><span class="speaker">Jessica:</span> What do you mean?</p>
+      <br>
+      <p><span class="speaker">Andy:</span> Well, he never asks about what I'm doing. <span class="highlight" data-use="Present continuous with 'always' - annoying behaviour">He's always talking about his life</span> and what he's going to do, but he doesn't care about anyone else!</p>
+      <br>
+      <p><span class="speaker">Jessica:</span> Yes, I've noticed that <span class="highlight" data-use="Present simple - permanent situation/fact">he never takes an interest in other people</span>. <span class="highlight" data-use="Present continuous - future arrangement">Are you going to do anything about it?</span></p>
+      <br>
+      <p><span class="speaker">Andy:</span> What can I do? That's the personality he's got.</p>
+      <br>
+      <p><span class="speaker">Jessica:</span> <span class="highlight" data-use="Future time clause with 'when' - present simple">Next time you see him</span>, tell him that it annoys you. <span class="highlight" data-use="Will - instant decision/offer">I'll tell him if you want</span> because it irritates me too!</p>
+      <br>
+      <p><span class="speaker">Andy:</span> Perhaps I should, because <span class="highlight" data-use="Present continuous - happening now/about now">his attitude is really putting me off him</span>. If he can't change his behaviour, then I don't see how we can stay friends. <span class="highlight" data-use="Present simple - timetable/schedule">Our first lesson tomorrow is English</span>. <span class="highlight" data-use="Will - promise">I'll speak to him then</span>.</p>
+      <br>
+      <p><span class="speaker">Jessica:</span> Good idea. If he's really a good friend, <span class="highlight" data-use="Will - prediction based on what we know">he won't get angry</span>.</p>
+      <br>
+      <p><span class="speaker">Andy:</span> Well, thanks for your advice. <span class="highlight" data-use="Present continuous - future arrangement">I'm playing football this evening</span>, and <span class="highlight" data-use="Going to - prediction based on present evidence">it looks like it's going to rain</span>, so I'd better go home and pick up my waterproofs. See you.</p>
+      <br>
+      <p><span class="speaker">Jessica:</span> OK. Good luck with Tom!</p>
+    </div>
+
+    <div class="question-block">
+      <p><span class="q-number">1</span> Which annoying habit from the list does Andy complain about?</p>
+      <div class="options">
+        <label><input type="radio" name="disc1" value="a"> Always arrives late</label>
+        <label><input type="radio" name="disc1" value="b"> Always talks about himself</label>
+        <label><input type="radio" name="disc1" value="c"> Interrupts people</label>
+      </div>
+      <div class="explanation" id="disc1-exp"></div>
+    </div>
+
+    <div class="question-block">
+      <p><span class="q-number">2</span> Do you agree with Jessica's advice? Why / Why not?</p>
+      <textarea placeholder="I think Jessica's advice is..." style="width:100%; border:2px solid var(--border); border-radius:8px; padding:10px; font-family:inherit; min-height:60px;"></textarea>
+    </div>
+
+    <button class="btn btn-check" onclick="checkDiscovery()">Check Answer</button>
+    <div class="score-display" id="disc-score"></div>
+  </div>
+</div>
+
+<!-- ==================== RULES ==================== -->
+<div class="tab-content" id="tab-rules">
+  <div class="section">
+    <h2>📖 Grammar Rules: Learn This!</h2>
+    <p class="instruction">Study the grammar rules below. These will help you with the exercises.</p>
+
+    <div class="grammar-box">
+      <h3>📗 Present Simple</h3>
+      <p>We use the present simple:</p>
+      <ul>
+        <li><strong>a)</strong> for habits and routines. <span class="example">I always go to bed at 10 o'clock.</span></li>
+        <li><strong>b)</strong> for permanent situations and facts. <span class="example">He lives in Leicester.</span></li>
+        <li><strong>c)</strong> for timetables and scheduled events. <span class="example">The concert starts at 8 p.m. on Saturday.</span></li>
+        <li><strong>d)</strong> in future time clauses after <em>when, as soon as, after</em>, etc. or <em>(the) next time</em>. <span class="example">We'll have some coffee as soon as Victor arrives.</span></li>
+      </ul>
+    </div>
+
+    <div class="grammar-box">
+      <h3>📘 Present Continuous</h3>
+      <p>We use the present continuous:</p>
+      <ul>
+        <li><strong>e)</strong> for something happening now or about now. <span class="example">He's studying English at university.</span></li>
+        <li><strong>f)</strong> with <em>always</em> to describe annoying behaviour. <span class="example">My mum's always telling me to clean my room.</span></li>
+        <li><strong>g)</strong> for things we have already agreed to do, usually with somebody else (arrangements). <span class="example">I'm playing football on Saturday afternoon.</span></li>
+      </ul>
+    </div>
+
+    <div class="grammar-box">
+      <h3>📙 Going to</h3>
+      <p>We use <em>going to</em>:</p>
+      <ul>
+        <li>for things we have already decided to do (intentions). <span class="example">I'm going to visit my grandparents at the weekend.</span></li>
+        <li>to make predictions based on present evidence. <span class="example">Look at those clouds. It's going to rain.</span></li>
+      </ul>
+    </div>
+
+    <div class="grammar-box">
+      <h3>📕 Will</h3>
+      <p>We use <em>will</em>:</p>
+      <ul>
+        <li>for things we decide to do as we are speaking (instant decisions, offers, promises). <span class="example">That's the phone ringing. I'll answer it.</span></li>
+        <li>to make factual statements about the future, and to make predictions. <span class="example">The sun will rise at 6.47 tomorrow morning.</span></li>
+      </ul>
+    </div>
+
+    <div class="ccq-box">
+      <p class="question">Concept Check: "I'm meeting Sarah at 6pm." - Is this:</p>
+      <div class="options">
+        <label><input type="radio" name="ccq1" value="arrangement"> An arrangement we agreed on</label>
+        <label><input type="radio" name="ccq1" value="intention"> Just my intention</label>
+      </div>
+      <div class="explanation" id="ccq1-exp"></div>
+    </div>
+
+    <div class="ccq-box">
+      <p class="question">Concept Check: "Look at those dark clouds! It's going to rain." - This prediction is based on:</p>
+      <div class="options">
+        <label><input type="radio" name="ccq2" value="evidence"> Present evidence (what I can see)</label>
+        <label><input type="radio" name="ccq2" value="opinion"> Just my opinion/guess</label>
+      </div>
+      <div class="explanation" id="ccq2-exp"></div>
+    </div>
+
+    <div class="ccq-box">
+      <p class="question">Concept Check: "I'll help you with that!" - This is:</p>
+      <div class="options">
+        <label><input type="radio" name="ccq3" value="instant"> An instant decision/offer</label>
+        <label><input type="radio" name="ccq3" value="planned"> Something I planned before</label>
+      </div>
+      <div class="explanation" id="ccq3-exp"></div>
+    </div>
+
+    <button class="btn btn-check" onclick="checkCCQs()">Check CCQs</button>
+    <div class="score-display" id="ccq-score"></div>
+  </div>
+</div>
+
+<!-- ==================== EXERCISE 1 ==================== -->
+<div class="tab-content" id="tab-ex1">
+  <div class="section">
+    <h2>✏️ Exercise 1: Choose the Correct Verb Form</h2>
+    <p class="instruction">Choose the correct present simple or present continuous form to complete the sentences.</p>
+
+    <div class="question-block" id="ex1q1">
+      <p><span class="q-number">1</span> 'Have you got any plans for this evening?' 'I ___ with Vicky.'</p>
+      <div class="options">
+        <label><input type="radio" name="ex1q1" value="a"> 'm going out</label>
+        <label><input type="radio" name="ex1q1" value="b"> go out</label>
+      </div>
+      <div class="explanation" id="ex1q1-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex1q2">
+      <p><span class="q-number">2</span> My flight ___ at five, so we need to be at the airport a good two hours before that.</p>
+      <div class="options">
+        <label><input type="radio" name="ex1q2" value="a"> 's leaving</label>
+        <label><input type="radio" name="ex1q2" value="b"> leaves</label>
+      </div>
+      <div class="explanation" id="ex1q2-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex1q3">
+      <p><span class="q-number">3</span> Jack ___ basketball every week.</p>
+      <div class="options">
+        <label><input type="radio" name="ex1q3" value="a"> isn't playing</label>
+        <label><input type="radio" name="ex1q3" value="b"> doesn't play</label>
+      </div>
+      <div class="explanation" id="ex1q3-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex1q4">
+      <p><span class="q-number">4</span> It seems that the Earth's climate ___ hotter.</p>
+      <div class="options">
+        <label><input type="radio" name="ex1q4" value="a"> is getting</label>
+        <label><input type="radio" name="ex1q4" value="b"> gets</label>
+      </div>
+      <div class="explanation" id="ex1q4-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex1q5">
+      <p><span class="q-number">5</span> You ___ where you've put your keys!</p>
+      <div class="options">
+        <label><input type="radio" name="ex1q5" value="a"> always forget</label>
+        <label><input type="radio" name="ex1q5" value="b"> are always forgetting</label>
+      </div>
+      <div class="explanation" id="ex1q5-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex1q6">
+      <p><span class="q-number">6</span> Our English teacher ___ from Manchester.</p>
+      <div class="options">
+        <label><input type="radio" name="ex1q6" value="a"> is coming</label>
+        <label><input type="radio" name="ex1q6" value="b"> comes</label>
+      </div>
+      <div class="explanation" id="ex1q6-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex1q7">
+      <p><span class="q-number">7</span> I'll see you after the lesson ___.</p>
+      <div class="options">
+        <label><input type="radio" name="ex1q7" value="a"> finishes</label>
+        <label><input type="radio" name="ex1q7" value="b"> is finishing</label>
+      </div>
+      <div class="explanation" id="ex1q7-exp"></div>
+    </div>
+
+    <button class="btn btn-check" onclick="checkEx1()">Check Answers</button>
+    <button class="btn btn-reset" onclick="resetEx1()">Reset</button>
+    <div class="score-display" id="ex1-score"></div>
+  </div>
+</div>
+
+<!-- ==================== EXERCISE 2 ==================== -->
+<div class="tab-content" id="tab-ex2">
+  <div class="section">
+    <h2>📝 Exercise 2: Complete the Text</h2>
+    <p class="instruction">Complete the text with the correct present simple or continuous form of the verbs in brackets. More than one answer may be possible.</p>
+
+    <div class="dialogue-box" style="background:#eaf2f8; border-color:var(--secondary);">
+      <p>I frequently <input class="fill-input" id="ex2q1" data-answer="text" placeholder="???"> (text) my friends on my mobile phone, but I'm not like some people who <input class="fill-input" id="ex2q2" data-answer="are always using" placeholder="???"> (always use) their phones, even when they <input class="fill-input" id="ex2q3" data-answer="go out" placeholder="???"> (go out) with friends. I <input class="fill-input" id="ex2q4" data-answer="am using" placeholder="???"> (use) it at the moment because I <input class="fill-input" id="ex2q5" data-answer="am revising" placeholder="???"> (revise) with some friends tomorrow (our exams <input class="fill-input" id="ex2q6" data-answer="start" placeholder="???"> (start) on Monday) and we <input class="fill-input" id="ex2q7" data-answer="are trying" placeholder="???"> (try) to decide where to meet. Texting <input class="fill-input" id="ex2q8" data-answer="helps" placeholder="???"> (help) you organise your life, but shouldn't dominate it!</p>
+    </div>
+
+    <button class="btn btn-check" onclick="checkEx2()">Check Answers</button>
+    <button class="btn btn-reset" onclick="resetEx2()">Reset</button>
+    <div class="score-display" id="ex2-score"></div>
+  </div>
+</div>
+
+<!-- ==================== EXERCISE 3 ==================== -->
+<div class="tab-content" id="tab-ex3">
+  <div class="section">
+    <h2>🎯 Exercise 3: Will or Going to?</h2>
+    <p class="instruction">Complete the sentences. Use <em>will</em> or <em>going to</em> and the verb in brackets.</p>
+
+    <div class="question-block" id="ex3q1">
+      <p><span class="q-number">1</span> Bye! I <input class="fill-input" id="ex3q1-input" placeholder="???"> (see) you tomorrow.</p>
+      <div class="explanation" id="ex3q1-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex3q2">
+      <p><span class="q-number">2</span> 'Have you got any plans for this evening?' 'I <input class="fill-input" id="ex3q2-input" placeholder="???"> (meet) Vicky.'</p>
+      <div class="explanation" id="ex3q2-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex3q3">
+      <p><span class="q-number">3</span> Look! That car's going too fast. It <input class="fill-input" id="ex3q3-input" placeholder="???"> (crash).</p>
+      <div class="explanation" id="ex3q3-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex3q4">
+      <p><span class="q-number">4</span> I'm going to town later so I <input class="fill-input" id="ex3q4-input" placeholder="???"> (give) you a lift.</p>
+      <div class="explanation" id="ex3q4-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex3q5">
+      <p><span class="q-number">5</span> The forecast said that tomorrow's weather <input class="fill-input" id="ex3q5-input" placeholder="???"> (be) cold and wet.</p>
+      <div class="explanation" id="ex3q5-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex3q6">
+      <p><span class="q-number">6</span> <input class="fill-input" id="ex3q6-input" placeholder="???" style="width:300px;"> (you / see) James this evening?</p>
+      <div class="explanation" id="ex3q6-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex3q7">
+      <p><span class="q-number">7</span> Careful – your phone's <input class="fill-input" id="ex3q7-input" placeholder="???"> (fall) out of your bag!</p>
+      <div class="explanation" id="ex3q7-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex3q8">
+      <p><span class="q-number">8</span> You should come to the concert – you <input class="fill-input" id="ex3q8-input" placeholder="???"> (have) a great evening.</p>
+      <div class="explanation" id="ex3q8-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex3q9">
+      <p><span class="q-number">9</span> Can I borrow your pen? I <input class="fill-input" id="ex3q9-input" placeholder="???" style="width:280px;"> (not forget) to give it back.</p>
+      <div class="explanation" id="ex3q9-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex3q10">
+      <p><span class="q-number">10</span> Thanks for your help. I <input class="fill-input" id="ex3q10-input" placeholder="???" style="width:280px;"> (do) the same for you one day!</p>
+      <div class="explanation" id="ex3q10-exp"></div>
+    </div>
+
+    <button class="btn btn-check" onclick="checkEx3()">Check Answers</button>
+    <button class="btn btn-reset" onclick="resetEx3()">Reset</button>
+    <div class="score-display" id="ex3-score"></div>
+  </div>
+</div>
+
+<!-- ==================== EXERCISE 4 ==================== -->
+<div class="tab-content" id="tab-ex4">
+  <div class="section">
+    <h2>💬 Exercise 4: Which Tense Would You Use?</h2>
+    <p class="instruction">Read the questions. Which present and future tenses would you use to answer each one? Then answer them!</p>
+
+    <div class="qa-block">
+      <p class="question-text">1. What habits do you have that might annoy people?</p>
+      <p style="font-size:0.9em; color:var(--text-light); margin-bottom:8px;">💡 <strong>Hint:</strong> Use present simple for habits</p>
+      <textarea placeholder="I always... / I never..."></textarea>
+      <button class="btn btn-check" onclick="toggleSample(this)" style="margin-top:8px; padding:6px 14px; font-size:0.85em;">Show sample answer</button>
+      <div class="sample-answer">✅ <strong>Sample:</strong> I always check my phone when I'm with friends, which can be annoying. I also sometimes interrupt people when I'm excited about a topic!</div>
+    </div>
+
+    <div class="qa-block">
+      <p class="question-text">2. What do you do if someone has habits that are annoying?</p>
+      <p style="font-size:0.9em; color:var(--text-light); margin-bottom:8px;">💡 <strong>Hint:</strong> Use present simple for routines/general truths</p>
+      <textarea placeholder="If someone annoys me, I usually..."></textarea>
+      <button class="btn btn-check" onclick="toggleSample(this)" style="margin-top:8px; padding:6px 14px; font-size:0.85em;">Show sample answer</button>
+      <div class="sample-answer">✅ <strong>Sample:</strong> If someone has annoying habits, I usually try to ignore them at first. If it really bothers me, I'll talk to them politely about it.</div>
+    </div>
+
+    <div class="qa-block">
+      <p class="question-text">3. What social arrangements have you made for the next few days?</p>
+      <p style="font-size:0.9em; color:var(--text-light); margin-bottom:8px;">💡 <strong>Hint:</strong> Use present continuous for arrangements</p>
+      <textarea placeholder="I'm meeting... / I'm going..."></textarea>
+      <button class="btn btn-check" onclick="toggleSample(this)" style="margin-top:8px; padding:6px 14px; font-size:0.85em;">Show sample answer</button>
+      <div class="sample-answer">✅ <strong>Sample:</strong> I'm meeting my friend for coffee on Wednesday. I'm also going to the gym on Thursday evening with a colleague.</div>
+    </div>
+
+    <div class="qa-block">
+      <p class="question-text">4. What events in school do you predict for the coming year?</p>
+      <p style="font-size:0.9em; color:var(--text-light); margin-bottom:8px;">💡 <strong>Hint:</strong> Use will or going to for predictions</p>
+      <textarea placeholder="I think... / There will be..."></textarea>
+      <button class="btn btn-check" onclick="toggleSample(this)" style="margin-top:8px; padding:6px 14px; font-size:0.85em;">Show sample answer</button>
+      <div class="sample-answer">✅ <strong>Sample:</strong> I think there will be more online classes next year. The school is going to build a new library, and I predict it'll be finished by summer.</div>
+    </div>
+
+    <div class="qa-block">
+      <p class="question-text">5. What plans do you have for the next school holiday?</p>
+      <p style="font-size:0.9em; color:var(--text-light); margin-bottom:8px;">💡 <strong>Hint:</strong> Use going to for intentions, present continuous for arrangements</p>
+      <textarea placeholder="I'm going to... / I'm visiting..."></textarea>
+      <button class="btn btn-check" onclick="toggleSample(this)" style="margin-top:8px; padding:6px 14px; font-size:0.85em;">Show sample answer</button>
+      <div class="sample-answer">✅ <strong>Sample:</strong> I'm going to visit my grandparents in the countryside. I'm also meeting some friends for a day trip to the coast – we've already booked the train tickets!</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== EXERCISE 5 ==================== -->
+<div class="tab-content" id="tab-ex5">
+  <div class="section">
+    <h2>🔍 Exercise 5: Find and Correct the Errors</h2>
+    <p class="instruction">Each sentence has ONE error in the verb tense. Click on the incorrect part and type the correction.</p>
+
+    <div class="question-block" id="ex5q1">
+      <p><span class="q-number">1</span> She's always forgetting her keys!</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span>Correction:</span>
+        <input class="fill-input" id="ex5q1-input" placeholder="type correct form..." style="width:250px;">
+      </div>
+      <div class="explanation" id="ex5q1-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex5q2">
+      <p><span class="q-number">2</span> I'm going to the cinema tomorrow night. I buy the tickets yesterday.</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span>Correction:</span>
+        <input class="fill-input" id="ex5q2-input" placeholder="type correct form..." style="width:250px;">
+      </div>
+      <div class="explanation" id="ex5q2-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex5q3">
+      <p><span class="q-number">3</span> Look at those clouds! It will rain soon.</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span>Correction:</span>
+        <input class="fill-input" id="ex5q3-input" placeholder="type correct form..." style="width:250px;">
+      </div>
+      <div class="explanation" id="ex5q3-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex5q4">
+      <p><span class="q-number">4</span> When I will see him, I'll tell him the news.</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span>Correction:</span>
+        <input class="fill-input" id="ex5q4-input" placeholder="type correct form..." style="width:250px;">
+      </div>
+      <div class="explanation" id="ex5q4-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex5q5">
+      <p><span class="q-number">5</span> The train is leaving at 9:15 tomorrow morning.</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span>Correction:</span>
+        <input class="fill-input" id="ex5q5-input" placeholder="type correct form..." style="width:250px;">
+      </div>
+      <div class="explanation" id="ex5q5-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex5q6">
+      <p><span class="q-number">6</span> I think I'm going to have a coffee. Would you like one?</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span>Correction:</span>
+        <input class="fill-input" id="ex5q6-input" placeholder="type correct form..." style="width:250px;">
+      </div>
+      <div class="explanation" id="ex5q6-exp"></div>
+    </div>
+
+    <button class="btn btn-check" onclick="checkEx5()">Check Answers</button>
+    <button class="btn btn-reset" onclick="resetEx5()">Reset</button>
+    <div class="score-display" id="ex5-score"></div>
+  </div>
+</div>
+
+<!-- ==================== EXERCISE 6 ==================== -->
+<div class="tab-content" id="tab-ex6">
+  <div class="section">
+    <h2>✍️ Exercise 6: Sentence Transformation</h2>
+    <p class="instruction">Rewrite the sentences using the word in brackets. Keep the same meaning.</p>
+
+    <div class="question-block" id="ex6q1">
+      <p><span class="q-number">1</span> I've arranged to meet Sarah at 6pm. (MEETING)</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span>Rewrite:</span>
+        <input class="fill-input" id="ex6q1-input" placeholder="I..." style="width:350px;">
+      </div>
+      <div class="explanation" id="ex6q1-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex6q2">
+      <p><span class="q-number">2</span> I've decided to study medicine at university. (GOING)</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span>Rewrite:</span>
+        <input class="fill-input" id="ex6q2-input" placeholder="I..." style="width:350px;">
+      </div>
+      <div class="explanation" id="ex6q2-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex6q3">
+      <p><span class="q-number">3</span> I promise I won't tell anyone your secret. (TELL)</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span>Rewrite:</span>
+        <input class="fill-input" id="ex6q3-input" placeholder="I..." style="width:350px;">
+      </div>
+      <div class="explanation" id="ex6q3-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex6q4">
+      <p><span class="q-number">4</span> The concert starts at 8pm on Saturday. (STARTING)</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span>Rewrite:</span>
+        <input class="fill-input" id="ex6q4-input" placeholder="The concert..." style="width:350px;">
+      </div>
+      <div class="explanation" id="ex6q4-exp"></div>
+    </div>
+
+    <div class="question-block" id="ex6q5">
+      <p><span class="q-number">5</span> I'm sure she'll pass the exam. (GOING)</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span>Rewrite:</span>
+        <input class="fill-input" id="ex6q5-input" placeholder="She..." style="width:350px;">
+      </div>
+      <div class="explanation" id="ex6q5-exp"></div>
+    </div>
+
+    <button class="btn btn-check" onclick="checkEx6()">Check Answers</button>
+    <button class="btn btn-reset" onclick="resetEx6()">Reset</button>
+    <div class="score-display" id="ex6-score"></div>
+  </div>
+</div>
+
+<!-- ==================== EXERCISE 7 ==================== -->
+<div class="tab-content" id="tab-ex7">
+  <div class="section">
+    <h2>🎤 Exercise 7: Freer Practice – Your Life!</h2>
+    <p class="instruction">Answer these questions about your own life. Use a variety of present and future tenses. Try to use at least 3 different tense forms in your answers!</p>
+
+    <div class="qa-block">
+      <p class="question-text">1. Tell me about your typical weekday routine. What do you usually do?</p>
+      <textarea placeholder="I usually wake up at... I always..."></textarea>
+      <button class="btn btn-check" onclick="toggleSample(this)" style="margin-top:8px; padding:6px 14px; font-size:0.85em;">Show sample answer</button>
+      <div class="sample-answer">✅ <strong>Sample:</strong> I usually wake up at 7am and have breakfast. I always check my emails before work. I'm currently working on a big project, so I'm spending a lot of time at the office these days.</div>
+    </div>
+
+    <div class="qa-block">
+      <p class="question-text">2. What are you doing this weekend? Any special arrangements?</p>
+      <textarea placeholder="This weekend I'm..."></textarea>
+      <button class="btn btn-check" onclick="toggleSample(this)" style="margin-top:8px; padding:6px 14px; font-size:0.85em;">Show sample answer</button>
+      <div class="sample-answer">✅ <strong>Sample:</strong> This weekend I'm meeting some friends for brunch on Saturday. On Sunday, I'm going to visit my parents – I haven't seen them in a while!</div>
+    </div>
+
+    <div class="qa-block">
+      <p class="question-text">3. What are your plans for next year? Any big intentions?</p>
+      <textarea placeholder="Next year I'm going to..."></textarea>
+      <button class="btn btn-check" onclick="toggleSample(this)" style="margin-top:8px; padding:6px 14px; font-size:0.85em;">Show sample answer</button>
+      <div class="sample-answer">✅ <strong>Sample:</strong> Next year I'm going to start learning Spanish. I've also decided to change my career path, so I'll be looking for new opportunities. I think it's going to be an exciting year!</div>
+    </div>
+
+    <div class="qa-block">
+      <p class="question-text">4. Make three predictions about the world in 2050.</p>
+      <textarea placeholder="In 2050, I think..."></textarea>
+      <button class="btn btn-check" onclick="toggleSample(this)" style="margin-top:8px; padding:6px 14px; font-size:0.85em;">Show sample answer</button>
+      <div class="sample-answer">✅ <strong>Sample:</strong> In 2050, I think we'll have flying cars. Technology is going to advance so much that robots will do most of our work. However, I believe people will still value human connection and friendship.</div>
+    </div>
+
+    <div class="qa-block">
+      <p class="question-text">5. Think of something that annoys you about a friend or family member. How do you deal with it?</p>
+      <textarea placeholder="My friend always... It really annoys me when..."></textarea>
+      <button class="btn btn-check" onclick="toggleSample(this)" style="margin-top:8px; padding:6px 14px; font-size:0.85em;">Show sample answer</button>
+      <div class="sample-answer">✅ <strong>Sample:</strong> My brother is always leaving his clothes on the floor! It really irritates me. I've told him many times, but he doesn't listen. Next time he does it, I'm going to put his clothes outside his door!</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FINAL SCORE ==================== -->
+<div class="final-score" id="finalScore">
+  <div class="emoji" id="finalEmoji">🎉</div>
+  <h2 id="finalTitle">Excellent Work!</h2>
+  <p id="finalText"></p>
+</div>
+
+<script>
+// ==================== TAB NAVIGATION ====================
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ==================== PROGRESS TRACKING ====================
+let completedExercises = new Set();
+
+function updateProgress() {
+  const total = 7;
+  const done = completedExercises.size;
+  const pct = (done / total) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `Progress: ${done} / ${total} exercises completed`;
+
+  if (done === total) {
+    showFinalScore();
+  }
+}
+
+function showFinalScore() {
+  const el = document.getElementById('finalScore');
+  el.classList.add('show');
+  el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ==================== DISCOVERY ====================
+function checkDiscovery() {
+  const selected = document.querySelector('input[name="disc1"]:checked');
+  const expEl = document.getElementById('disc1-exp');
+
+  if (selected) {
+    if (selected.value === 'b') {
+      expEl.className = 'explanation show correct-exp';
+      expEl.innerHTML = '✅ Correct! Andy complains that Tom is always talking about his life and doesn\'t care about anyone else – this matches "always talks about himself/herself".';
+    } else {
+      expEl.className = 'explanation show incorrect-exp';
+      expEl.innerHTML = '❌ Not quite. Andy says "He\'s always talking about his life and what he\'s going to do, but he doesn\'t care about anyone else!" This matches "always talks about himself/herself".';
+    }
+  } else {
+    expEl.className = 'explanation show incorrect-exp';
+    expEl.innerHTML = 'Please select an answer!';
+  }
+
+  completedExercises.add('discovery');
+  updateProgress();
+}
+
+// ==================== CCQs ====================
+function checkCCQs() {
+  let score = 0;
+  const answers = {
+    ccq1: { correct: 'arrangement', explanation: '✅ Correct! "I\'m meeting Sarah at 6pm" uses present continuous for an arrangement – something already agreed/planned with someone else.' },
+    ccq2: { correct: 'evidence', explanation: '✅ Correct! "It\'s going to rain" is a prediction based on present evidence (the dark clouds you can see now).' },
+    ccq3: { correct: 'instant', explanation: '✅ Correct! "I\'ll help you" is an instant decision/offer made at the moment of speaking.' }
+  };
+
+  for (const [qid, data] of Object.entries(answers)) {
+    const selected = document.querySelector(`input[name="${qid}"]:checked`);
+    const expEl = document.getElementById(qid + '-exp');
+
+    if (selected) {
+      if (selected.value === data.correct) {
+        score++;
+        expEl.className = 'explanation show correct-exp';
+      } else {
+        expEl.className = 'explanation show incorrect-exp';
+      }
+      expEl.innerHTML = data.explanation;
+    } else {
+      expEl.className = 'explanation show incorrect-exp';
+      expEl.innerHTML = 'Please select an answer!';
+    }
+  }
+
+  document.getElementById('ccq-score').textContent = `Score: ${score} / 3`;
+  completedExercises.add('rules');
+  updateProgress();
+}
+
+// ==================== EXERCISE 1 ====================
+const ex1Answers = {
+  ex1q1: { correct: 'a', explanation: '<strong>Present continuous for arrangements:</strong> "I\'m going out with Vicky" – this is a planned arrangement for this evening.' },
+  ex1q2: { correct: 'b', explanation: '<strong>Present simple for timetables:</strong> "My flight leaves at five" – scheduled events use present simple.' },
+  ex1q3: { correct: 'b', explanation: '<strong>Present simple for habits/routines:</strong> "Jack doesn\'t play basketball every week" – "every week" indicates a routine.' },
+  ex1q4: { correct: 'a', explanation: '<strong>Present continuous for changing situations:</strong> "The Earth\'s climate is getting hotter" – describes a change happening now/around now.' },
+  ex1q5: { correct: 'b', explanation: '<strong>Present continuous with "always" for annoying behaviour:</strong> "You are always forgetting" – expresses irritation about a repeated action.' },
+  ex1q6: { correct: 'b', explanation: '<strong>Present simple for permanent situations/facts:</strong> "Our English teacher comes from Manchester" – this is a permanent fact.' },
+  ex1q7: { correct: 'a', explanation: '<strong>Present simple in future time clauses:</strong> "after the lesson finishes" – after "after", we use present simple, not future.' }
+};
+
+function checkEx1() {
+  let score = 0;
+  const total = Object.keys(ex1Answers).length;
+
+  for (const [qid, data] of Object.entries(ex1Answers)) {
+    const selected = document.querySelector(`input[name="${qid}"]:checked`);
+    const expEl = document.getElementById(qid + '-exp');
+    const labels = document.querySelectorAll(`#${qid} .options label`);
+
+    labels.forEach(l => l.classList.add('disabled'));
+
+    if (selected) {
+      if (selected.value === data.correct) {
+        score++;
+        selected.parentElement.classList.add('correct');
+        expEl.className = 'explanation show correct-exp';
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        labels.forEach(l => {
+          if (l.querySelector('input').value === data.correct) l.classList.add('correct');
+        });
+        expEl.className = 'explanation show incorrect-exp';
+      }
+    } else {
+      labels.forEach(l => {
+        if (l.querySelector('input').value === data.correct) l.classList.add('correct');
+      });
+      expEl.className = 'explanation show incorrect-exp';
+    }
+    expEl.innerHTML = data.explanation;
+  }
+
+  document.getElementById('ex1-score').textContent = `Score: ${score} / ${total}`;
+  completedExercises.add('ex1');
+  updateProgress();
+}
+
+function resetEx1() {
+  for (const qid of Object.keys(ex1Answers)) {
+    document.querySelectorAll(`input[name="${qid}"]`).forEach(r => r.checked = false);
+    document.querySelectorAll(`#${qid} .options label`).forEach(l => {
+      l.classList.remove('correct', 'incorrect', 'disabled');
+    });
+    document.getElementById(qid + '-exp').className = 'explanation';
+  }
+  document.getElementById('ex1-score').textContent = '';
+  completedExercises.delete('ex1');
+  updateProgress();
+}
+
+// ==================== EXERCISE 2 ====================
+function checkEx2() {
+  let score = 0;
+  const inputs = document.querySelectorAll('#tab-ex2 .fill-input');
+  const total = inputs.length;
+
+  inputs.forEach(input => {
+    const answer = input.dataset.answer.toLowerCase().trim();
+    const userAnswer = input.value.toLowerCase().trim();
+
+    input.classList.remove('correct', 'incorrect');
+
+    // Allow some flexibility
+    const acceptableAnswers = [answer];
+    if (answer === 'am using') acceptableAnswers.push('m using');
+    if (answer === 'am revising') acceptableAnswers.push('m revising');
+    if (answer === 'are trying') acceptableAnswers.push('re trying');
+    if (answer === 'are always using') acceptableAnswers.push('re always using');
+
+    if (acceptableAnswers.includes(userAnswer)) {
+      score++;
+      input.classList.add('correct');
+    } else {
+      input.classList.add('incorrect');
+      input.title = `Correct answer: ${input.dataset.answer}`;
+    }
+  });
+
+  document.getElementById('ex2-score').textContent = `Score: ${score} / ${total}`;
+  completedExercises.add('ex2');
+  updateProgress();
+}
+
+function resetEx2() {
+  document.querySelectorAll('#tab-ex2 .fill-input').forEach(input => {
+    input.value = '';
+    input.classList.remove('correct', 'incorrect');
+    input.title = '';
+  });
+  document.getElementById('ex2-score').textContent = '';
+  completedExercises.delete('ex2');
+  updateProgress();
+}
+
+// ==================== EXERCISE 3 ====================
+const ex3Answers = {
+  ex3q1: { correct: ['will see', "'ll see"], explanation: '<strong>Will for instant decision/promise:</strong> "I\'ll see you tomorrow" – a spontaneous decision/promise made at the moment of speaking.' },
+  ex3q2: { correct: ['am meeting', "'m meeting"], explanation: '<strong>Present continuous for arrangements:</strong> "I\'m meeting Vicky" – a planned arrangement for this evening.' },
+  ex3q3: { correct: ['is going to crash', "'s going to crash"], explanation: '<strong>Going to for prediction based on present evidence:</strong> "It\'s going to crash" – you can see the evidence now (car going too fast).' },
+  ex3q4: { correct: ['will give', "'ll give"], explanation: '<strong>Will for offer:</strong> "I\'ll give you a lift" – an offer made at the moment of speaking.' },
+  ex3q5: { correct: ['will be', "'ll be"], explanation: '<strong>Will for prediction:</strong> "tomorrow\'s weather will be cold" – a prediction about the future (from the forecast).' },
+  ex3q6: { correct: ['are you going to see', "'re you going to see", "are you meeting", "'re you meeting"], explanation: '<strong>Going to for intentions OR present continuous for arrangements:</strong> "Are you going to see James?" or "Are you meeting James?" – both are possible depending on whether it\'s an intention or arrangement.' },
+  ex3q7: { correct: ['going to fall', "'s going to fall"], explanation: '<strong>Going to for prediction based on present evidence:</strong> "your phone\'s going to fall" – you can see it happening now.' },
+  ex3q8: { correct: ['will have', "'ll have"], explanation: '<strong>Will for prediction:</strong> "you\'ll have a great evening" – a prediction about the future.' },
+  ex3q9: { correct: ["won't forget", "will not forget"], explanation: '<strong>Will for promise:</strong> "I won\'t forget" – a promise made at the moment of speaking.' },
+  ex3q10: { correct: ["will do", "'ll do"], explanation: '<strong>Will for promise:</strong> "I\'ll do the same for you" – a promise about the future.' }
+};
+
+function checkEx3() {
+  let score = 0;
+  const total = Object.keys(ex3Answers).length;
+
+  for (const [qid, data] of Object.entries(ex3Answers)) {
+    const input = document.getElementById(qid + '-input');
+    const expEl = document.getElementById(qid + '-exp');
+    const userAnswer = input.value.toLowerCase().trim();
+
+    input.classList.remove('correct', 'incorrect');
+
+    if (data.correct.map(a => a.toLowerCase()).includes(userAnswer)) {
+      score++;
+      input.classList.add('correct');
+      expEl.className = 'explanation show correct-exp';
+    } else {
+      input.classList.add('incorrect');
+      expEl.className = 'explanation show incorrect-exp';
+    }
+    expEl.innerHTML = data.explanation;
+  }
+
+  document.getElementById('ex3-score').textContent = `Score: ${score} / ${total}`;
+  completedExercises.add('ex3');
+  updateProgress();
+}
+
+function resetEx3() {
+  for (const qid of Object.keys(ex3Answers)) {
+    const input = document.getElementById(qid + '-input');
+    input.value = '';
+    input.classList.remove('correct', 'incorrect');
+    document.getElementById(qid + '-exp').className = 'explanation';
+  }
+  document.getElementById('ex3-score').textContent = '';
+  completedExercises.delete('ex3');
+  updateProgress();
+}
+
+// ==================== EXERCISE 4 ====================
+function toggleSample(btn) {
+  const sample = btn.nextElementSibling;
+  sample.classList.toggle('show');
+  btn.textContent = sample.classList.contains('show') ? 'Hide sample answer' : 'Show sample answer';
+}
+
+// ==================== EXERCISE 5 ====================
+const ex5Answers = {
+  ex5q1: { correct: ["she's always forgetting", 'she is always forgetting'], explanation: '✅ This sentence is actually CORRECT! Present continuous with "always" is used to describe annoying behaviour. No correction needed!' },
+  ex5q2: { correct: ['i bought the tickets yesterday', 'i bought'], explanation: '<strong>Past simple for completed past actions:</strong> "I bought the tickets yesterday" – "yesterday" requires past simple, not present continuous.' },
+  ex5q3: { correct: ["it's going to rain", 'it is going to rain'], explanation: '<strong>Going to for prediction based on present evidence:</strong> "It\'s going to rain" – you can see the clouds now (present evidence), so use "going to", not "will".' },
+  ex5q4: { correct: ['when i see him', 'i see him'], explanation: '<strong>Present simple in future time clauses:</strong> "When I see him" – after "when", we use present simple, not "will".' },
+  ex5q5: { correct: ['the train leaves at', 'leaves at'], explanation: '<strong>Present simple for timetables:</strong> "The train leaves at 9:15" – scheduled events use present simple, not present continuous.' },
+  ex5q6: { correct: ["i'll have a coffee", 'i will have a coffee', "i think i'll have"], explanation: '<strong>Will for instant decision:</strong> "I think I\'ll have a coffee" – this is a decision made at the moment of speaking, not a prior plan.' }
+};
+
+function checkEx5() {
+  let score = 0;
+  const total = Object.keys(ex5Answers).length;
+
+  for (const [qid, data] of Object.entries(ex5Answers)) {
+    const input = document.getElementById(qid + '-input');
+    const expEl = document.getElementById(qid + '-exp');
+    const userAnswer = input.value.toLowerCase().trim();
+
+    input.classList.remove('correct', 'incorrect');
+
+    if (data.correct.map(a => a.toLowerCase()).includes(userAnswer)) {
+      score++;
+      input.classList.add('correct');
+      expEl.className = 'explanation show correct-exp';
+    } else {
+      input.classList.add('incorrect');
+      expEl.className = 'explanation show incorrect-exp';
+    }
+    expEl.innerHTML = data.explanation;
+  }
+
+  document.getElementById('ex5-score').textContent = `Score: ${score} / ${total}`;
+  completedExercises.add('ex5');
+  updateProgress();
+}
+
+function resetEx5() {
+  for (const qid of Object.keys(ex5Answers)) {
+    const input = document.getElementById(qid + '-input');
+    input.value = '';
+    input.classList.remove('correct', 'incorrect');
+    document.getElementById(qid + '-exp').className = 'explanation';
+  }
+  document.getElementById('ex5-score').textContent = '';
+  completedExercises.delete('ex5');
+  updateProgress();
+}
+
+// ==================== EXERCISE 6 ====================
+const ex6Answers = {
+  ex6q1: { correct: ["i'm meeting sarah at 6pm", "i am meeting sarah at 6pm"], explanation: '✅ Present continuous for arrangements: "I\'m meeting Sarah at 6pm" – already planned/agreed.' },
+  ex6q2: { correct: ["i'm going to study medicine", "i am going to study medicine"], explanation: '✅ Going to for intentions: "I\'m going to study medicine" – already decided.' },
+  ex6q3: { correct: ["i won't tell anyone", "i will not tell anyone"], explanation: '✅ Will for promises: "I won\'t tell anyone" – a promise made at the moment of speaking.' },
+  ex6q4: { correct: ["the concert is starting at 8pm", "the concert's starting at 8pm"], explanation: '⚠️ Actually, "The concert starts at 8pm" (present simple for timetables) is MORE natural than present continuous here. Both are possible, but present simple is preferred for scheduled events.' },
+  ex6q5: { correct: ["she's going to pass the exam", "she is going to pass the exam"], explanation: '✅ Going to for predictions based on what we know: "She\'s going to pass the exam" – based on evidence/knowledge.' }
+};
+
+function checkEx6() {
+  let score = 0;
+  const total = Object.keys(ex6Answers).length;
+
+  for (const [qid, data] of Object.entries(ex6Answers)) {
+    const input = document.getElementById(qid + '-input');
+    const expEl = document.getElementById(qid + '-exp');
+    const userAnswer = input.value.toLowerCase().trim();
+
+    input.classList.remove('correct', 'incorrect');
+
+    if (data.correct.map(a => a.toLowerCase()).includes(userAnswer)) {
+      score++;
+      input.classList.add('correct');
+      expEl.className = 'explanation show correct-exp';
+    } else {
+      input.classList.add('incorrect');
+      expEl.className = 'explanation show incorrect-exp';
+    }
+    expEl.innerHTML = data.explanation;
+  }
+
+  document.getElementById('ex6-score').textContent = `Score: ${score} / ${total}`;
+  completedExercises.add('ex6');
+  updateProgress();
+}
+
+function resetEx6() {
+  for (const qid of Object.keys(ex6Answers)) {
+    const input = document.getElementById(qid + '-input');
+    input.value = '';
+    input.classList.remove('correct', 'incorrect');
+    document.getElementById(qid + '-exp').className = 'explanation';
+  }
+  document.getElementById('ex6-score').textContent = '';
+  completedExercises.delete('ex6');
+  updateProgress();
+}
+
+// ==================== INITIAL PROGRESS ====================
+updateProgress();
+</script>
+
+</body>
+</html>
